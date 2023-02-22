@@ -1,0 +1,9 @@
+
+.flagImg {
+    border: 1px solid silver;
+    box-shadow: 5px 10px 10px 0 rgba(0, 0, 0, 0.815);
+    &:hover {
+        border: 5px solid silver;
+        box-shadow: none;
+    }
+}

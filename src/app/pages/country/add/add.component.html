@@ -1,0 +1,63 @@
+<div class="responsive-paddings">
+    <div class="content-block">
+        <h2>Add Country</h2>
+    </div>
+
+    <div>
+
+        <form [formGroup]="addFormCountry">
+            <div class="fields">
+                <dx-text-box placeholder="Country name *" name="name" formControlName="name" width="45%">
+                    <dx-validator>
+                        <dxi-validation-rule type="required" message="This field is required">
+                        </dxi-validation-rule>
+                    </dx-validator>
+                </dx-text-box>
+
+                <dx-text-box placeholder="Region *" name="region" formControlName="region" width="45%">
+                    <dx-validator>
+                        <dxi-validation-rule type="required" message="This field is required">
+                        </dxi-validation-rule>
+                    </dx-validator>
+                </dx-text-box>
+            </div>
+
+            <div class="fields">
+                <dx-text-box placeholder="Official language *" name="language"
+                    formControlName="language" width="45%">
+                    <dx-validator>
+                        <dxi-validation-rule type="required" message="This field is required">
+                        </dxi-validation-rule>
+                    </dx-validator>
+                </dx-text-box>
+
+                <dx-number-box placeholder="Population *" name="population" formControlName="population" width="45%">
+                    <dx-validator>
+                        <dxi-validation-rule type="required" message="This field is required">
+                        </dxi-validation-rule>
+                        <dxi-validation-rule type="pattern" [pattern]="numberPattern"  message="This field has to be a positive number">
+                        </dxi-validation-rule>
+                    </dx-validator>
+                </dx-number-box>
+            </div>
+
+            <div class="fields">
+                <dx-text-box placeholder="URL flag" name="urlFlag" formControlName="urlFlag" width="45%">
+                    <dx-validator>
+                        <dxi-validation-rule type="pattern" [pattern]="urlPattern" message="This field has to be a valid url. Ej: https://flagcdn.com/w320/pl.png">
+                        </dxi-validation-rule>
+                    </dx-validator>
+                </dx-text-box>
+
+                <dx-text-area placeholder="Notes" name="notes" formControlName="notes" width="45%">
+                </dx-text-area>
+            </div>
+
+            <div class="fields--btnContainer">
+                <dx-button class="fields--btnContainer--btnSubmit" text="Save" type="success" [useSubmitBehavior]="true"
+                    icon="save" (onClick)="submit()" [disabled]="!addFormCountry.valid"></dx-button>
+                <dx-button text="Clear" (onClick)="clear()"></dx-button>
+            </div>
+        </form>
+    </div>
+</div>

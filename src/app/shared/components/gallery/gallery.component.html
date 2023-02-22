@@ -1,0 +1,6 @@
+<dx-gallery [items]="items" [selectedItem]="items[itemIndex]" [showNavButtons]="showNavButtons" [showIndicator]="showIndicator" [height]="height" [itemTemplate]="itemTemplate">
+    <div class="flagData" *dxTemplate="let info of itemTemplate">
+        <span>{{ info.text }}</span>
+        <img [src]="info.imageSrc" class="flagData--flagPopupImg" height="300" width="450"/>
+    </div>
+</dx-gallery>

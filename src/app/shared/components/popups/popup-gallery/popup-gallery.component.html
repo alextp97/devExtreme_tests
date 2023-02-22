@@ -1,0 +1,9 @@
+<dx-popup [(visible)]="visible" [title]="title" [contentTemplate]="contentTemplate" [resizeEnabled]="resizable"
+    [showCloseButton]="showCloseButton" [closeOnOutsideClick]="closeOnOutsideClick" (onHiding)="sendPropVisible()">
+
+    <div class="popupContent" *dxTemplate="let data of contentTemplate">
+        <app-gallery [items]="arrayImages" [showNavButtons]="true" [showIndicator]="false" [height]="400" itemTemplate="flagData" [itemIndex]="rowIndex">
+        </app-gallery>
+    </div>
+
+</dx-popup>
