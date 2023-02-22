@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Country } from '../interfaces/country.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -9,16 +10,20 @@ import { Observable } from 'rxjs';
 export class CountryService {
   constructor(private _http: HttpClient) {}
 
-  url: string = environment.url;
+  private apiUrl = environment.apiUrl;
 
   // Alta
   addCountry(formData: any): Observable<any> {
-    return this._http.post(this.url, formData);
+    return this._http.post(this.apiUrl, formData);
   }
 
-  // Listado
-  getListCountries(): Observable<any> {
-    return this._http.get(this.url);
+  get httpParams() {
+    return new HttpParams().set('fields', 'name,capital,alpha2Code,flag,population');
+  }
+
+  getAllCountries(){
+    const url = `${ this.apiUrl }/all`;    
+    return this._http.get<Country[]>(url, { params: this.httpParams });
   }
 
   // Consulta

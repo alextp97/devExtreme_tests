@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { DxDataGridComponent } from 'devextreme-angular';
+import { Country } from '../../interfaces/country.interface';
 import { CountryService } from '../country.service';
-import { ICountry } from './config';
 
 interface IObjCarousel {
   imageSrc: string | undefined;
@@ -11,8 +12,12 @@ interface IObjCarousel {
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.scss'],
 })
-export class ListComponent {
-  arrayCountries: ICountry[] = [];
+export class ListComponent implements OnInit {
+
+  @ViewChild(DxDataGridComponent, { static: false }) dataGrid!: DxDataGridComponent;
+
+  countries: Country[] = [];
+
   arrayFlags: IObjCarousel[] = [];
   rowIndex: number = 0;
   visible: boolean = false;
@@ -23,13 +28,12 @@ export class ListComponent {
   };
 
   constructor(private countryService: CountryService) {
-    this.countryService.getListCountries().subscribe((countryList) => {
-      this.arrayCountries = countryList;
 
-      this.arrayCountries.map((country: ICountry) => {
+    this.countryService.getAllCountries().subscribe((countryList: Country[]) => {
+      countryList.map((country: Country) => {
         // Info para el carrousel de imágenes
         this.carrouselFlags.text = country.name;
-        this.carrouselFlags.imageSrc = country.urlFlag;
+        this.carrouselFlags.imageSrc = country.flag;
 
         this.arrayFlags.push({
           text: this.carrouselFlags.text,
@@ -39,11 +43,17 @@ export class ListComponent {
     });
   }
 
+  ngOnInit(): void {
+    this.countryService.getAllCountries().subscribe((resp: Country[]) => {
+      this.countries = resp;
+    });
+  }
+
   openPopup(event: any) {
     // Si se hace click sobre una de las banderas
-    if (event.rowType == 'data' && event.columnIndex === 4) {
+    if (event.rowType == 'data' && event.column.caption === 'Flag') {
       this.visible = !this.visible; // Popup visible
-      this.rowIndex = event.rowIndex; // Obtención del índice de la fila seleccionada para abrir el popup mostrando la bandera actual
+      this.rowIndex = this.dataGrid.instance.pageIndex() * this.dataGrid.instance.pageSize() + event.rowIndex; // Obtención del índice de la fila seleccionada para abrir el popup mostrando la bandera actual
     }
   }
 
@@ -55,4 +65,10 @@ export class ListComponent {
     // Petición DELETE a back
     //return !AppComponent.isChief(e.row.data.Position);
   }
+
+  onExporting(event: any){
+  }
+
+
+
 }
