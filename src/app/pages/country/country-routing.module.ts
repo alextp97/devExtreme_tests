@@ -4,6 +4,7 @@ import { AuthGuardService } from 'src/app/shared/services';
 import { ListComponent } from './list/list.component';
 import { AddComponent } from './add/add.component';
 import { ConsultComponent } from './consult/consult.component';
+import { DeleteComponent } from './delete/delete.component';
 
 const routes: Routes = [
   {
@@ -22,6 +23,11 @@ const routes: Routes = [
       {
         path: 'consult',
         component: ConsultComponent,
+        canActivate: [ AuthGuardService ]
+      },
+      {
+        path: 'delete',
+        component: DeleteComponent,
         canActivate: [ AuthGuardService ]
       },
       {

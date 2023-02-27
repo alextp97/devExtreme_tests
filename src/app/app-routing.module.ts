@@ -5,10 +5,11 @@ import { AuthGuardService } from './shared/services';
 import { HomeComponent } from './pages/home/home.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { TasksComponent } from './pages/tasks/tasks.component';
-import { DxDataGridModule, DxFormModule } from 'devextreme-angular';
+import { DxDataGridModule, DxFormModule, DxButtonModule } from 'devextreme-angular';
 import { ListComponent } from './pages/country/list/list.component'
 import { CommonModule } from '@angular/common';
 import { ComponentModule } from "./shared/components/components.module";
+import { DeleteComponent } from './pages/country/delete/delete.component';
 
 const routes: Routes = [
   {
@@ -63,8 +64,9 @@ const routes: Routes = [
         HomeComponent,
         ProfileComponent,
         TasksComponent,
-        ListComponent
+        ListComponent,
+        DeleteComponent
     ],
-    imports: [RouterModule.forRoot(routes, { useHash: true }), DxDataGridModule, DxFormModule, CommonModule, ComponentModule]
+    imports: [RouterModule.forRoot(routes, { useHash: true }), DxDataGridModule, DxFormModule, DxButtonModule, CommonModule, ComponentModule]
 })
 export class AppRoutingModule { }

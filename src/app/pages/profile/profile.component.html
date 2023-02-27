@@ -2,12 +2,17 @@
 
 <div class="content-block dx-card responsive-paddings">
   <div class="form-avatar">
-    <img src="https://js.devexpress.com/Demos/WidgetsGallery/JSDemos/{{employee.Picture}}" />
+    <img src="/assets/img/IMG_GitHub.jpg" />
   </div>
   <span>{{employee.Notes}}</span>
 </div>
 
 <div class="content-block dx-card responsive-paddings">
+
   <dx-form id="form" [formData]="employee" labelLocation="top" [colCountByScreen]="colCountByScreen">
   </dx-form>
+
+  <dx-button class="fields--btnContainer--btnSubmit" text="Save" type="success" [useSubmitBehavior]="true"
+                    icon="save" (onClick)="submit()" [disabled]="!employee.valid"></dx-button>
+  <dx-button text="Clear" (onClick)="clear()"></dx-button>
 </div>

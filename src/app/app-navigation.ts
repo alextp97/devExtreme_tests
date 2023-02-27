@@ -40,6 +40,11 @@ export const navigation = [
         path: '/country/consult'
       },
       {
+        text: 'Delete',
+        icon: 'trash',
+        path: '/country/delete'
+      },
+      {
         text: 'Update',
         icon: 'refresh',
         path: '/country/modify'

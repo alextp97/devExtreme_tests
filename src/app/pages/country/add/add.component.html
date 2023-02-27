@@ -4,60 +4,32 @@
     </div>
 
     <div>
+        <!-- Para que se dispare el guardar al pulsar el boton, 
+             hay que poner la etiqueta form y el evento submit en dicha etiqueta -->
+        <form (submit)="submit()">
 
-        <form [formGroup]="addFormCountry">
-            <div class="fields">
-                <dx-text-box placeholder="Country name *" name="name" formControlName="name" width="45%">
-                    <dx-validator>
-                        <dxi-validation-rule type="required" message="This field is required">
-                        </dxi-validation-rule>
-                    </dx-validator>
-                </dx-text-box>
+            <dx-form id="form" [formData]="addCountry" [colCount]="2">
 
-                <dx-text-box placeholder="Region *" name="region" formControlName="region" width="45%">
-                    <dx-validator>
-                        <dxi-validation-rule type="required" message="This field is required">
-                        </dxi-validation-rule>
-                    </dx-validator>
-                </dx-text-box>
-            </div>
+                <dxi-item itemType="group" caption="Country">
+                    <dxi-item dataField="name" [isRequired]="true"></dxi-item>
+                    <dxi-item dataField="region" [isRequired]="true"></dxi-item>
+                    <dxi-item dataField="notes" [isRequired]="true"></dxi-item>
+                </dxi-item>
 
-            <div class="fields">
-                <dx-text-box placeholder="Official language *" name="language"
-                    formControlName="language" width="45%">
-                    <dx-validator>
-                        <dxi-validation-rule type="required" message="This field is required">
-                        </dxi-validation-rule>
-                    </dx-validator>
-                </dx-text-box>
+                <dxi-item itemType="group" caption="Data Country">
+                    <dxi-item dataField="language" [isRequired]="true"></dxi-item>
+                    <dxi-item dataField="population" [isRequired]="true">
+                            <dxi-validation-rule type="pattern" [pattern]="numberPattern"></dxi-validation-rule>
+                    </dxi-item>
+                    <dxi-item dataField="urlFlag" [isRequired]="true">
+                        <dxi-validation-rule type="pattern" [pattern]="urlPattern"></dxi-validation-rule>
+                    </dxi-item>
+                </dxi-item>
 
-                <dx-number-box placeholder="Population *" name="population" formControlName="population" width="45%">
-                    <dx-validator>
-                        <dxi-validation-rule type="required" message="This field is required">
-                        </dxi-validation-rule>
-                        <dxi-validation-rule type="pattern" [pattern]="numberPattern"  message="This field has to be a positive number">
-                        </dxi-validation-rule>
-                    </dx-validator>
-                </dx-number-box>
-            </div>
-
-            <div class="fields">
-                <dx-text-box placeholder="URL flag" name="urlFlag" formControlName="urlFlag" width="45%">
-                    <dx-validator>
-                        <dxi-validation-rule type="pattern" [pattern]="urlPattern" message="This field has to be a valid url. Ej: https://flagcdn.com/w320/pl.png">
-                        </dxi-validation-rule>
-                    </dx-validator>
-                </dx-text-box>
-
-                <dx-text-area placeholder="Notes" name="notes" formControlName="notes" width="45%">
-                </dx-text-area>
-            </div>
-
-            <div class="fields--btnContainer">
-                <dx-button class="fields--btnContainer--btnSubmit" text="Save" type="success" [useSubmitBehavior]="true"
-                    icon="save" (onClick)="submit()" [disabled]="!addFormCountry.valid"></dx-button>
-                <dx-button text="Clear" (onClick)="clear()"></dx-button>
-            </div>
+            </dx-form>
+            <dx-button class="fields--btnContainer--btnSubmit" text="Save" type="success" [useSubmitBehavior]="true"
+                    icon="save" ></dx-button>
+            <dx-button text="Clear" (onClick)="clear()"></dx-button>
         </form>
     </div>
 </div>

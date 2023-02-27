@@ -11,16 +11,16 @@ export class ProfileComponent {
   constructor() {
     this.employee = {
       ID: 7,
-      FirstName: 'Juan Luis',
-      LastName: 'Paulano',
+      FirstName: 'Alejandro',
+      LastName: 'Torres',
       Prefix: 'Mr.',
       Position: 'Frontend Consultant',
-      Picture: '',
+      Picture: '/assets/img/IMG_GitHub.jpg',
       BirthDate: new Date('1974/11/5'),
       HireDate: new Date('2005/05/11'),
       /* tslint:disable-next-line:max-line-length */
       Notes:
-        'Juan Luis is a Frontend Consultant. He is studying DevExtrme, a technology used by frameworks like Angular, Ionic and React',
+        'Alejandro is a Frontend Consultant. He is studying DevExtrme, a technology used by frameworks like Angular, Ionic and React',
       Address: '4600 N Virginia Rd.',
     };
     this.colCountByScreen = {
@@ -29,5 +29,13 @@ export class ProfileComponent {
       md: 3,
       lg: 4,
     };
+  }
+
+  submit(){
+
+  }
+
+  clear(){
+    
   }
 }

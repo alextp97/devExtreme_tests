@@ -1,22 +1,23 @@
 export interface Country {
+    id:             number;
     name:           string;
-    topLevelDomain: string[];
-    alpha2Code:     string;
-    alpha3Code:     string;
-    callingCodes:   string[];
+    topLevelDomain?: string[];
+    alpha2Code?:     string;
+    alpha3Code?:     string;
+    callingCodes?:   string[];
     capital?:       string;
     altSpellings?:  string[];
-    subregion:      string;
-    region:         Region;
+    subregion?:      string;
+    region?:         Region;
     population:     number;
     latlng?:        number[];
-    demonym:        string;
+    demonym?:        string;
     area?:          number;
-    timezones:      string[];
+    timezones?:      string[];
     borders?:       string[];
-    nativeName:     string;
-    numericCode:    string;
-    flags:          Flags;
+    nativeName?:     string;
+    numericCode?:    string;
+    flags?:          Flags;
     currencies?:    Currency[];
     languages:      Language[];
     translations:   Translations;
@@ -24,6 +25,16 @@ export interface Country {
     cioc?:          string;
     independent:    boolean;
     gini?:          number;
+}
+
+export interface formCountry {
+    id:             number;
+    name:           string;
+    region:         string;
+    language:       string;
+    population:     number;
+    urlFlag:        string;
+    notes:          string;
 }
 
 export interface Currency {

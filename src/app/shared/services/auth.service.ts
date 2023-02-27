@@ -8,8 +8,8 @@ export interface IUser {
 
 const defaultPath = '/';
 const defaultUser = {
-  email: 'juanluis.paulano@bosonit.com',
-  avatarUrl: 'https://media.sketchfab.com/models/badc72c64d184d6fb62dcf4fd0eda56e/thumbnails/c06dd19dd5414d579140d1fc6f73729a/2bb47a1a48ce484597b2bed90fae0336.jpeg'
+  email: 'alejandro.torres@bosonit.com',
+  avatarUrl: '/assets/img/IMG_GitHub.jpg'
 };
 
 @Injectable()

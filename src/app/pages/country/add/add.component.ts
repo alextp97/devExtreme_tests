@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -7,6 +7,9 @@ import {
 import notify from 'devextreme/ui/notify';
 import { CountryService } from '../country.service';
 import { ICountry } from '../list/config';
+import { FormCountryService } from '../form-country.service';
+import { Country, formCountry } from '../../interfaces/country.interface';
+import { DxFormComponent } from 'devextreme-angular';
 
 @Component({
   selector: 'app-add',
@@ -14,70 +17,34 @@ import { ICountry } from '../list/config';
   styleUrls: ['./add.component.scss'],
 })
 export class AddComponent implements OnInit {
-  addFormCountry!: FormGroup;
 
+  @ViewChild(DxFormComponent, { static: false }) form!:DxFormComponent;
+  // addFormCountry!: FormGroup;
+  addCountry!: formCountry;
   numberPattern = /^\d+$/;
   urlPattern =
     /(^[a-zñA-ZÑ]*:\/\/[a-zñA-ZÑ]*\.[a-zA-Z]*\/?[a-z0-9]*\/[a-z]*\.[a-z]{3})/;
 
   constructor(
     private _builder: FormBuilder,
-    private _countryService: CountryService
+    private _countryService: CountryService,
+    private _formCountryService: FormCountryService
   ) {}
 
   ngOnInit() {
-    this.addFormCountry = this._builder.group({
-      name: ['', [Validators.required]],
-      region: ['', [Validators.required]],
-      language: ['', [Validators.required]],
-      population: [
-        '',
-        [Validators.required, Validators.pattern(this.numberPattern)],
-      ],
-      urlFlag: ['', [Validators.pattern(this.urlPattern)]],
-      notes: ['', []],
-    });
+    
   }
 
+  submitButtonOptions = {
+    text: "Submit the Form",
+    useSubmitBehavior: true
+}
   submit() {
-    if (this.addFormCountry.invalid) {
-      return;
-    } else {
-      // ENVIAR DATOS A BACK
-      const dataForm: ICountry = this.addFormCountry.value;
-
-      this._countryService.addCountry(dataForm).subscribe(
-        () => {
-          notify(
-            {
-              message: 'You have submitted the form',
-              position: {
-                my: 'center top',
-                at: 'center top',
-              },
-            },
-            'success',
-            3000
-          );
-        },
-        (error) => {
-          notify(
-            {
-              message: 'It has been a problem with the form',
-              position: {
-                my: 'center top',
-                at: 'center top',
-              },
-            },
-            'error',
-            3000
-          );
-        }
-      );
-    }
+    this._formCountryService.newCountry(this.form.formData).subscribe(() => 
+      this._formCountryService.sendCountry());
   }
 
   clear() {
-    this.addFormCountry.reset();
+    
   }
 }

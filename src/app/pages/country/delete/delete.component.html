@@ -1,0 +1,54 @@
+<div class="responsive-paddings">
+    <div class="content-block">
+        <h2>Delete Country</h2>
+    </div>
+
+    <div>
+        <!-- Tabla -->
+        <dx-data-grid 
+            id="gridContainer" 
+            [dataSource]="countries" 
+            [showBorders]="true"
+            (onExporting)="onExporting($event)"
+            (onCellClick)="openPopup($event)">
+
+            <!-- Exportar a excel la tabla de paises-->
+            <dxo-export [enabled]="true"></dxo-export>
+
+            <!-- Paginación -->
+            <dxo-pager 
+                [showPageSizeSelector]="true" 
+                [showInfo]="true" 
+                [allowedPageSizes]="[10, 20, 50]"></dxo-pager>
+
+            <dxo-editing mode="row" [allowDeleting]="allowDeleting"></dxo-editing>
+
+            <!-- Columnas -->
+            <dxi-column dataField="name"></dxi-column>
+            <dxi-column dataField="region"></dxi-column>
+            <dxi-column dataField="language"></dxi-column>
+            <dxi-column dataField="population"></dxi-column>
+            <dxi-column dataField="notes"></dxi-column>
+            <dxi-column dataField="urlFlag" cellTemplate="imgTemplate"></dxi-column>
+
+                <div *dxTemplate="let img of 'imgTemplate'">
+                    <img src="{{ img.value }}" class="imgBackground" />
+                </div>
+
+            <dxi-column cellTemplate="deleteBtn" caption="Delete">
+                <div *dxTemplate="let delete of 'deleteBtn'" >
+                    <dx-button (onClick)="getId(delete.data.id)" text="Delete" type="danger" icon="trash"></dx-button>
+                </div>
+            </dxi-column>
+        </dx-data-grid>
+    </div>
+
+</div>
+
+<app-popup-gallery [visible]="visible" title="Url Flag" contentTemplate="content" [resizable]="false"
+    [arrayImages]="arrayFlags" [showCloseButton]="true" [rowIndex]="rowIndex" (emitVisible)="getPropVisible($event)">
+</app-popup-gallery>
+
+<ng-template #noImage>
+    <label>No Image</label>
+</ng-template>
