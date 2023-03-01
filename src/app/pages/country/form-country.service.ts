@@ -45,5 +45,10 @@ export class FormCountryService {
     return this._http.delete<any>(`${this.urlCountry}/countries/${id}`)
   }
 
+  updateCountry(dataCountry: formCountry): Observable<formCountry>{
+    const countryId = dataCountry.id;
+    return this._http.patch<formCountry>(`${this.urlCountry}/countries/${countryId}`, dataCountry);
+  }
+
   
 }

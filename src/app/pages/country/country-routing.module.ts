@@ -5,6 +5,7 @@ import { ListComponent } from './list/list.component';
 import { AddComponent } from './add/add.component';
 import { ConsultComponent } from './consult/consult.component';
 import { DeleteComponent } from './delete/delete.component';
+import { UpdateComponent } from './update/update.component';
 
 const routes: Routes = [
   {
@@ -28,6 +29,11 @@ const routes: Routes = [
       {
         path: 'delete',
         component: DeleteComponent,
+        canActivate: [ AuthGuardService ]
+      },
+      {
+        path: 'update',
+        component: UpdateComponent,
         canActivate: [ AuthGuardService ]
       },
       {

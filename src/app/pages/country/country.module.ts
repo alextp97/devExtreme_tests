@@ -3,9 +3,10 @@ import { CommonModule } from '@angular/common';
 
 import { CountryRoutingModule } from './country-routing.module';
 import { AddComponent } from './add/add.component';
-import { DxButtonModule, DxFormModule, DxNumberBoxModule, DxTextAreaModule, DxTextBoxModule, DxValidatorModule } from 'devextreme-angular';
+import { DxAutocompleteModule, DxButtonModule, DxFormModule, DxLoadPanelModule, DxNumberBoxModule, DxSelectBoxModule, DxTextAreaModule, DxTextBoxModule, DxValidatorModule } from 'devextreme-angular';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ConsultComponent } from './consult/consult.component';
+import { UpdateComponent } from './update/update.component';
 
 
 @NgModule({
@@ -23,7 +24,11 @@ import { ConsultComponent } from './consult/consult.component';
     DxNumberBoxModule,
     DxTextAreaModule,
     DxValidatorModule,
-    DxButtonModule
+    DxButtonModule,
+    DxAutocompleteModule,
+    DxSelectBoxModule,
+    DxTextBoxModule,
+    DxLoadPanelModule
   ]
 })
 export class CountryModule { }

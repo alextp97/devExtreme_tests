@@ -1,1 +1,50 @@
-<p>consult works!</p>
+<div class="responsive-paddings">
+    <h2>Country Consult</h2>
+
+    <div class="selectContainer">
+        <!-- <dx-select-box [dataSource]="countries" [showClearButton]="true"
+            fieldTemplate="selectedCountry" (onValueChanged)="countrySelected($event)">
+
+            <div *dxTemplate="let country of 'selectedCountry'">
+                <div class="selectContainer--country">
+                    <img [src]="country && country.urlFlag" height="50" ngClass="selectecImgStyle"/>
+                    <dx-text-box [value]="country && country.name" [readOnly]="true"></dx-text-box>
+                </div>
+                <div *dxTemplate="let country of 'item'">
+                    <div class="selectContainer--country">
+                        <img [src]="country.urlFlag" height="50" ngClass="selectecImgStyle"/>
+                        <label>{{ country && country.name }}</label>
+                    </div>
+                </div>
+            </div>
+        </dx-select-box> -->
+
+        <dx-autocomplete placeholder="Search by country name" [dataSource]="countries" valueExpr="name" (onValueChanged)="updateCountryInfo($event)">
+            <div *dxTemplate="let item of 'item'">
+                <span>{{item.name}}</span>
+            </div>
+        </dx-autocomplete>
+    </div>
+
+    <!-- <div class="content" *ngIf="data">
+        <div class="content--data">
+            <label>Country name <strong>{{country.name}}</strong></label>
+
+            <label>Region <strong>{{country.region}}</strong></label>
+
+            <label>Language <strong>{{country.language}}</strong></label>
+
+            <label>Population <strong>{{country.population | number}}</strong></label>
+        </div>
+        <div class="content--flag" *ngIf="country.urlFlag!.length > 0; else noImage">
+            <img [src]="country.urlFlag">
+        </div>
+        <div class="content--description">
+            <pre>{{country.description}}</pre>
+        </div>
+    </div> -->
+</div>
+
+<ng-template class="content--flag" #noImage>
+    <img src="../../../../assets/gallery/noImage.png" width="320" height="213">
+</ng-template>

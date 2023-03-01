@@ -47,7 +47,7 @@ export const navigation = [
       {
         text: 'Update',
         icon: 'refresh',
-        path: '/country/modify'
+        path: '/country/update'
       }
     ]
   }

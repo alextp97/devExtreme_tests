@@ -5,11 +5,14 @@ import { AuthGuardService } from './shared/services';
 import { HomeComponent } from './pages/home/home.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { TasksComponent } from './pages/tasks/tasks.component';
-import { DxDataGridModule, DxFormModule, DxButtonModule } from 'devextreme-angular';
+import { DxDataGridModule, DxFormModule, DxButtonModule, DxAutocompleteModule, DxNumberBoxModule, DxTextBoxModule, DxValidatorModule, DxTextAreaModule } from 'devextreme-angular';
 import { ListComponent } from './pages/country/list/list.component'
 import { CommonModule } from '@angular/common';
 import { ComponentModule } from "./shared/components/components.module";
 import { DeleteComponent } from './pages/country/delete/delete.component';
+import { UpdateComponent } from './pages/country/update/update.component';
+import { FormGroup, ReactiveFormsModule } from '@angular/forms';
+
 
 const routes: Routes = [
   {
@@ -65,8 +68,9 @@ const routes: Routes = [
         ProfileComponent,
         TasksComponent,
         ListComponent,
-        DeleteComponent
+        DeleteComponent,
+        UpdateComponent
     ],
-    imports: [RouterModule.forRoot(routes, { useHash: true }), DxDataGridModule, DxFormModule, DxButtonModule, CommonModule, ComponentModule]
+    imports: [RouterModule.forRoot(routes, { useHash: true }), DxDataGridModule, DxFormModule, DxButtonModule, DxAutocompleteModule, DxNumberBoxModule, DxTextBoxModule, DxValidatorModule, DxTextAreaModule, ReactiveFormsModule, CommonModule, ComponentModule]
 })
 export class AppRoutingModule { }

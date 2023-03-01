@@ -1,0 +1,30 @@
+.selectContainer {
+    display: grid;
+    grid-template-rows: 100%;
+    grid-template-columns: 30% 50% 20%;
+    margin: 5%;
+
+    label {
+        margin-top: 3%;
+    }
+
+    &--flag {
+        margin-left: 30%;
+    }
+}
+
+.fields {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 2%;
+
+    &--btnContainer {
+        justify-content: flex-end;
+        margin-right: 5%;
+        margin-top: 5%;
+    
+        &--btnSubmit {
+            margin-right: 1%;
+        }
+    }
+}
