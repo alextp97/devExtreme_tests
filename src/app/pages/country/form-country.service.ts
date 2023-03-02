@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { formCountry } from '../interfaces/country.interface';
 import { HttpClient } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
+import notify from 'devextreme/ui/notify';
 
 @Injectable({
   providedIn: 'root'
@@ -50,5 +51,20 @@ export class FormCountryService {
     return this._http.patch<formCountry>(`${this.urlCountry}/countries/${countryId}`, dataCountry);
   }
 
-  
+
+  //IMPLEMENTAR CUANDO SE TERMINE LA FUNCIONALIDAD GENERAL
+  // showNotifyGeneric(message: string, positionNoti: { my: string, at: string }, severity: string, life: number) {
+  //   let severityNotify = severity;
+  //   let positionNotify = positionNoti;
+  //   let msgNotify = message;
+  //   let timeOnScreen = life;
+  //   notify(
+  //     {
+  //       message: msgNotify,
+  //       positionNotify,   
+  //     },
+  //     severityNotify,
+  //     timeOnScreen
+  //     );
+  // }
 }

@@ -83,7 +83,7 @@ export class UpdateComponent implements OnInit {
    });
  }
 
- submit() {
+async submit() {
    if (this.updatingFormCountry.invalid) {
      return;
    } else {
@@ -91,8 +91,9 @@ export class UpdateComponent implements OnInit {
      // ENVIAR DATOS A BACK
      const dataForm: formCountry = this.updatingFormCountry.value;
 
-     this._countryService.updateCountry(dataForm).subscribe(
+     await this._countryService.updateCountry(dataForm).subscribe(
        () => {
+        this.visible = !this.visible;
         this.getAllCountries();
          notify(
            {
