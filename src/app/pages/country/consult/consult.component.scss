@@ -1,0 +1,33 @@
+
+.dataContainer {
+    margin: 5%;
+
+    &--data {
+        display: flex;
+        justify-content: start;
+
+        label {
+            margin: auto 5%;
+        }
+    }
+}
+
+.content {
+    margin: 5%;
+
+    &--fields {
+        display: inline-grid;
+
+        label {
+            font-size: 20px;
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 3.5;
+        }
+    }
+
+    &--flag {
+        float: right;
+        margin-top: inherit;
+    }
+
+}

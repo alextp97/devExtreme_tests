@@ -10,45 +10,60 @@ import { FormCountryService } from '../form-country.service';
 export class ConsultComponent implements OnInit {
 
   countries: formCountry[] = [];
+  fieldCountry: formCountry = {
+    id: 0,
+    name: '',
+    region: '',
+    population: 0,
+    language: '',
+    urlFlag: '',
+    notes: ''
+  };
   data: boolean = false;
+  loadSpinner: boolean = false;
 
   constructor(private _countryService: FormCountryService) { }
 
-  ngOnInit() {
-      this.getAllCounties();
+  async ngOnInit() {
+    this.countries = await this.getAllCounties();
 
   }
 
-  getAllCounties(){
-    this._countryService.getCountriesFromDB().subscribe((listCountries: formCountry[]) => {
-      this.countries = listCountries;
+ getAllCounties(): Promise<formCountry[]> {
+  this.loadSpinner = true;
+
+    return new Promise(resolve => {
+      setTimeout(() => {
+        this._countryService.getCountriesFromDB().subscribe((listCountries: formCountry[]) => {
+          resolve(listCountries);
+        });
+        this.loadSpinner = false;
+      }, 1500);
     });
   }
 
-  countrySelected(event: any) {
-    this.data = false; 
-    const country = event.value;
-
-    this.data = true;
-  }
-
-  updateCountryInfo(event: any) {
+  selectedCountry(event: any){ 
     this.data = false;
+    const dataCountry = event.value;
+    
+    if(dataCountry){
+      this.loadSpinner = true;
+      setTimeout(() => {
+        
+        this.fieldCountry.name = dataCountry.name;
+        this.fieldCountry.region = dataCountry.region;
+        this.fieldCountry.population = dataCountry.population;
+        this.fieldCountry.language = dataCountry.language;
+        this.fieldCountry.urlFlag = dataCountry.urlFlag;
+        this.fieldCountry.notes = dataCountry.notes;
+        this.loadSpinner = false;
+      }, 500);
 
-    let countryName = event.value;
-
-    // this.arrayCountries.forEach((country) => {
-    //   if (countryName === country.name) {
-    //     this.country.name = country.name;
-    //     this.country.region = country.region;
-    //     this.country.language = country.language;
-    //     this.country.population = country.population;
-    //     this.country.urlFlag = country.urlFlag;
-    //     this.country.description = country.description;
-
-    //     this.data = true;
-    //   }
-    // });
+      this.data = true;
+    }
   }
 
+  getPropVisible(event: any) { 
+    this.loadSpinner = event;
+  }
 }

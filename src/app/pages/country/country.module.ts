@@ -6,13 +6,11 @@ import { AddComponent } from './add/add.component';
 import { DxAutocompleteModule, DxButtonModule, DxFormModule, DxLoadPanelModule, DxNumberBoxModule, DxSelectBoxModule, DxTextAreaModule, DxTextBoxModule, DxValidatorModule } from 'devextreme-angular';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ConsultComponent } from './consult/consult.component';
-import { UpdateComponent } from './update/update.component';
 
 
 @NgModule({
   declarations: [
-    AddComponent,
-    ConsultComponent
+    AddComponent
   ],
   imports: [
     CommonModule,
