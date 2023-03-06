@@ -10,7 +10,8 @@
             [dataSource]="countries" 
             [showBorders]="true"
             (onExporting)="onExporting($event)"
-            (onCellClick)="openPopup($event)">
+            (onCellClick)="openPopup($event)"
+            >
 
             <!-- Exportar a excel la tabla de paises-->
             <dxo-export [enabled]="true"></dxo-export>
@@ -19,9 +20,8 @@
             <dxo-pager 
                 [showPageSizeSelector]="true" 
                 [showInfo]="true" 
-                [allowedPageSizes]="[10, 20, 50]"></dxo-pager>
-
-            <dxo-editing mode="row" [allowDeleting]="allowDeleting"></dxo-editing>
+                [allowedPageSizes]="[10, 20, 50]">
+            </dxo-pager>
 
             <!-- Columnas -->
             <dxi-column dataField="name"></dxi-column>

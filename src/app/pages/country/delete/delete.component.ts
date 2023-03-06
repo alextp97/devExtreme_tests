@@ -67,11 +67,6 @@ export class DeleteComponent implements OnInit {
     this.visible = event;
   }
 
-  allowDeleting() {
-    // Petición DELETE a back
-    //return !AppComponent.isChief(e.row.data.Position);
-  }
-
   onExporting(event: any){
   }
 

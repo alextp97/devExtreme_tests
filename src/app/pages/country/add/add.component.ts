@@ -34,11 +34,7 @@ export class AddComponent implements OnInit {
   ngOnInit() {
     
   }
-
-  submitButtonOptions = {
-    text: "Submit the Form",
-    useSubmitBehavior: true
-}
+  
   submit() {
     this._formCountryService.newCountry(this.form.formData).subscribe(() => 
       this._formCountryService.sendCountry());

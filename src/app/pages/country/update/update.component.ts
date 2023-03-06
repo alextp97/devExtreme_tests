@@ -36,7 +36,7 @@ export class UpdateComponent implements OnInit {
    this.getAllCountries();
 
    this.updatingFormCountry = this._builder.group({
-     id: [0],
+     id: [],
      name: ['', [Validators.required]],
      region: ['', [Validators.required]],
      language: ['', [Validators.required]],
@@ -83,16 +83,20 @@ export class UpdateComponent implements OnInit {
    });
  }
 
-async submit() {
+  async submit(idCountry: number) {
    if (this.updatingFormCountry.invalid) {
      return;
    } else {
     this.visible = !this.visible;
-     // ENVIAR DATOS A BACK
-     const dataForm: formCountry = this.updatingFormCountry.value;
 
-     await this._countryService.updateCountry(dataForm).subscribe(
-       () => {
+    // ENVIAR DATOS A BACK
+    const dataForm: formCountry = this.updatingFormCountry.value;
+
+    //Asignamos el idCountry al dataForm.id para que se pueda actualizar correctamente el formulario
+    dataForm.id = idCountry;
+     
+    await this._countryService.updateCountry(dataForm).subscribe(
+      () => {
         this.visible = !this.visible;
         this.getAllCountries();
          notify(
@@ -126,7 +130,7 @@ async submit() {
  }
 
  clear() {
-   this.updatingFormCountry.reset();
+  this.updatingFormCountry.reset();
  }
 
  getPropVisible(event: any) { 

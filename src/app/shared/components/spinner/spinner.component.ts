@@ -24,6 +24,4 @@ export class SpinnerComponent implements OnInit {
   onHidden() {
     this.emitVisible.emit(false);
   }
-
-
 }

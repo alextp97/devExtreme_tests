@@ -8,13 +8,13 @@
         (onValueChanged)="selectedCountry($event)"
         [showClearButton]="true"
         >
-        <div *dxTemplate="let data of 'item'">
-            <div class="dataContainer--data">
-                <img [src]="data.urlFlag" height="50">
-                <label>{{data.name}}</label>
+            <div *dxTemplate="let data of 'item'">
+                <div class="dataContainer--data">
+                    <img [src]="data.urlFlag" height="50">
+                    <label>{{data.name}}</label>
+                </div>
             </div>
-        </div>
-    </dx-select-box>
+        </dx-select-box>
     </div>
 
     <div class="content" *ngIf="data">

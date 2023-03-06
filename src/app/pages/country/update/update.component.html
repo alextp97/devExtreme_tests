@@ -20,8 +20,6 @@
 
         <form [formGroup]="updatingFormCountry">
             <div class="fields">
-                <dx-number-box [value]="country.id" placeholder="Id *" name="id" formControlName="id" style="display: none;">
-                </dx-number-box>
 
                 <label>Name</label>
                 <dx-text-box [value]="country.name" placeholder="Country name *" name="name" formControlName="name" width="45%">
@@ -77,7 +75,7 @@
 
             <div class="fields--btnContainer">
                 <dx-button class="fields--btnContainer--btnSubmit" text="Save" type="success" [useSubmitBehavior]="true"
-                    icon="save" (onClick)="submit()" [disabled]="!updatingFormCountry.valid">
+                    icon="save" (onClick)="submit(country.id)" [disabled]="!updatingFormCountry.valid">
                 </dx-button>
                 <dx-button text="Clear" (onClick)="clear()"></dx-button>
             </div>
